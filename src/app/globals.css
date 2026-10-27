@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'lenis/dist/lenis.css';
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 3, 3, 3;
+  --background-end-rgb: 10, 10, 10;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    180deg,
+    rgb(var(--background-start-rgb)) 0%,
+    rgb(var(--background-end-rgb)) 100%
+  );
+  min-height: 100vh;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(90deg, #FFFFFF 0%, #D4A843 50%, #9B9B9B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold-subtle {
+    background: linear-gradient(90deg, #FFFFFF 0%, #B89030 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-on-load {
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .clip-reveal-container {
+    overflow: hidden;
+  }
+
+  .clip-reveal-image {
+    width: 100%;
+    height: 115%;
+    object-fit: cover;
+    transform: scale(1.08);
+  }
+}
+
+@layer components {
+  .stat-card {
+    @apply relative p-6 md:p-8 bg-dark-800/50 backdrop-blur-sm border border-dark-700 rounded-2xl
+           transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
+           hover:border-accent-gold/30 hover:bg-dark-800/80 hover:shadow-[0_0_40px_-10px_rgba(212,168,67,0.15)];
+  }
+
+  .stat-value {
+    @apply font-display font-semibold text-4xl md:text-5xl lg:text-6xl tracking-tight
+           text-gradient-gold;
+  }
+
+  .stat-label {
+    @apply mt-2 text-sm md:text-base text-dark-400 tracking-wide uppercase font-medium;
+  }
+}
+
+::selection {
+  background: rgba(69, 219, 125, 0.35);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #45db7d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6ee89b;
+}
+/* Value letters (scroll-reveal headline) */
+.value-letter {
+  display: inline-block;
+  color: #111;
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 0.35s ease;
+}
+
+/* ── Scroll hero stat cards (demo geometry) ─────────────────────────── */
+.hero-stat {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+  padding: 30px;
+  margin: 16px;
+  border-radius: 10px;
+  opacity: 0;
+  will-change: opacity;
+  line-height: normal;
+}
+
+.hero-stat-num {
+  font-size: 58px;
+  font-weight: 600;
+}
+
+.hero-stat-label {
+  font-size: 16px;
+}
+
+.hero-stat--1 {
+  top: 5%;
+  right: 30%;
+}
+.hero-stat--1 .hero-stat-label {
+  font-size: 18px;
+}
+.hero-stat--2 {
+  bottom: 5%;
+  right: 35%;
+}
+.hero-stat--3 {
+  top: 5%;
+  right: 10%;
+}
+.hero-stat--4 {
+  bottom: 5%;
+  right: 12.5%;
+}
+
+/* More breathing room below full-desktop widths (demo cards touch at ~1280) */
+@media (max-width: 1700px) {
+  .hero-stat--1 {
+    right: 32%;
+  }
+  .hero-stat--2 {
+    right: 37%;
+  }
+  .hero-stat--3 {
+    right: 8%;
+  }
+  .hero-stat--4 {
+    right: 10%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-stat {
+    padding: 16px;
+    margin: 10px;
+  }
+  .hero-stat-num {
+    font-size: 36px;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+  }
+  .hero-stat--1 .hero-stat-label {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero-stat--1 {
+    right: 34%;
+  }
+  .hero-stat--2 {
+    right: 39%;
+  }
+  .hero-stat--3 {
+    right: 6%;
+  }
+  .hero-stat--4 {
+    right: 8%;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-stat {
+    padding: 10px 12px;
+    margin: 6px;
+    border-radius: 8px;
+  }
+  .hero-stat-num {
+    font-size: 26px;
+  }
+  .hero-stat-label {
+    font-size: 10px;
+    line-height: 1.25;
+  }
+  .hero-stat--1 .hero-stat-label {
+    font-size: 10px;
+  }
+
+  /* Two tidy columns below the road instead of overlapping percentages */
+  .hero-stat--1,
+  .hero-stat--3 {
+    right: 53%;
+  }
+  .hero-stat--2,
+  .hero-stat--4 {
+    left: 53%;
+    right: auto;
+  }
+  .hero-stat--1,
+  .hero-stat--2 {
+    top: auto;
+    bottom: calc(6% + 96px);
+  }
+  .hero-stat--3,
+  .hero-stat--4 {
+    top: auto;
+    bottom: 6%;
+  }
+}
