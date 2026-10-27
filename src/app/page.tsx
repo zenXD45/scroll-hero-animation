@@ -259,7 +259,7 @@ export default function HeroSection() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={carRef}
-            src="/car.png"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/car.png`}
             alt="McLaren 720S 2022 top view"
             style={{
               position: 'absolute',

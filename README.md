@@ -4,6 +4,8 @@ A faithful, production-ready recreation of the reference hero at
 [paraschaturvedi.github.io/car-scroll-animation](https://paraschaturvedi.github.io/car-scroll-animation),
 built with Next.js, GSAP ScrollTrigger and Lenis for noticeably smoother scrolling.
 
+**Live demo:** <https://zenxd45.github.io/scroll-hero-animation/>
+
 ## What it does
 
 - **Pinned 200vh hero** with a sticky full-height track and a 200px dark road.
@@ -40,6 +42,11 @@ Production:
 npm run build
 npm start
 ```
+
+## Deploy
+
+Pushes to `main` are built as a static export and published to GitHub Pages by
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
 ## Files
 
